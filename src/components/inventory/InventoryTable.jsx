@@ -27,7 +27,7 @@ const InventoryTable = ({ items, onDelete }) => {
               <td>
                 <Link to={`/admin/inventory/${item.id}`}><button>Переглянути</button></Link>
                 <Link to={`/admin/inventory/edit/${item.id}`}><button>Редагувати</button></Link>
-                <button onClick={() => setDeleteId(item.id)}>Видалити</button>
+                <button className="danger" onClick={() => setDeleteId(item.id)}>Видалити</button>
               </td>
             </tr>
           ))}

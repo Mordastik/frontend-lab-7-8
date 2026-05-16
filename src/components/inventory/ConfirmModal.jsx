@@ -8,7 +8,7 @@ const ConfirmModal = ({ onConfirm, onCancel }) => {
       <div style={{ background: 'white', padding: '20px', borderRadius: '8px' }}>
         <h3>Ви впевнені, що хочете видалити цю позицію?</h3>
         <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-          <button onClick={onConfirm} style={{ background: 'red', color: 'white' }}>Видалити</button>
+          <button className="danger" onClick={onConfirm}>Видалити</button>
           <button onClick={onCancel}>Скасувати</button>
         </div>
       </div>
