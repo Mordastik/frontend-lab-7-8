@@ -146,3 +146,218 @@ textarea {
   min-height: 100px;
   resize: vertical;
 }
+
+/* ЛАБОРАТОРНА 8: ГАЛЕРЕЯ ТА UI/UX
+/* Навігація в хедері */
+.nav-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: color 0.2s;
+  padding: 5px 10px;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+/* Адаптивна сітка (Grid) */
+.inventory-grid {
+  display: grid;
+  /* Це автоматично підлаштує колонки: на телефоні буде 1, на ПК - 3 або 4 */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* Картка інвентарю */
+.inventory-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+/* Hover-ефект (картка піднімається) */
+.inventory-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Картинка в картці */
+.card-image-container {
+  height: 200px;
+  width: 100%;
+  background: #f8fafc;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Обрізає фото пропорційно */
+  transition: transform 0.3s ease;
+}
+
+.inventory-card:hover .card-image {
+  transform: scale(1.05); /* Легкий зум при наведенні */
+}
+
+.card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: #e2e8f0;
+}
+
+/* Контент картки */
+.card-content {
+  padding: 15px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 16px;
+  margin: 0;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Кнопка "Улюблене" */
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Модальне вікно (Quick View) */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.3s ease-out;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.1);
+  color: #333;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0; margin: 0;
+}
+
+.modal-close:hover {
+  background: rgba(0,0,0,0.2);
+}
+
+.modal-body {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.modal-image-wrapper {
+  width: 50%;
+  background: #f1f5f9;
+}
+
+.modal-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-info {
+  width: 50%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-desc {
+  margin-top: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Стани завантаження та порожні (Empty states) */
+.state-message {
+  text-align: center;
+  padding: 50px 20px;
+  border-radius: 8px;
+  background: white;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-color);
+  margin-top: 20px;
+}
+
+/* Анімації */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Адаптивність модалки для телефонів */
+@media (max-width: 768px) {
+  .modal-body {
+    flex-direction: column;
+  }
+  .modal-image-wrapper, .modal-info {
+    width: 100%;
+  }
+  .modal-image-wrapper {
+    height: 250px;
+  }
+}
